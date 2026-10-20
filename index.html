@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Перевірка ділянки — Дмитро Нішкун</title>
+  <meta name="description" content="Прийшли з TikTok або Instagram? Замовте довідку ДЗК, ДРРП, план меж чи пошук власника прямо тут. Дмитро Нішкун, рієлтор на Осокорках.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/mark.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Дмитро Нішкун",
+    "telephone": "+380665968444",
+    "url": "https://www.facebook.com/rieltorosokorki",
+    "image": "assets/portrait.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "вул. Центральна, 11А",
+      "addressLocality": "Київ",
+      "addressRegion": "Осокорки",
+      "addressCountry": "UA"
+    },
+    "areaServed": ["Осокорки", "Вишеньки", "Проців", "Київ"],
+    "brand": "Level Group"
+  }
+  </script>
+  <style>
+    :root {
+      --ink: #14241f;
+      --ink-soft: #3d524a;
+      --river: #132824;
+      --deep: #0c1c19;
+      --foam: #f3efe4;
+      --paper: #faf7f1;
+      --sand: #e6dccb;
+      --line: #d5cbb8;
+      --reed: #2c6b52;
+      --copper: #9a431c;
+      --gold: #c6a15a;
+      --white: #fffcf7;
+      --shadow: 0 18px 50px rgba(20, 36, 31, 0.12);
+      --sans: "Manrope", "Segoe UI", sans-serif;
+      --display: "Unbounded", "Manrope", sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--foam);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      background: var(--white);
+      padding: 0.5rem 0.8rem;
+      z-index: 20;
+    }
+    .skip:focus { top: 0.5rem; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(243, 239, 228, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+    }
+    .site-header.is-stuck { border-bottom-color: var(--line); }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      min-height: 72px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      margin-right: auto;
+    }
+    .mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+      background: var(--river);
+      box-shadow: inset 0 0 0 1px rgba(231, 192, 122, 0.45);
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+    .brand-name {
+      font-family: var(--display);
+      font-size: 1.02rem;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .brand-sub {
+      display: block;
+      margin-top: 0.28rem;
+      font-size: 0.68rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .nav { display: flex; gap: 1.25rem; }
+    .nav a { text-decoration: none; font-size: 0.95rem; }
+    .nav a:hover { color: var(--copper); }
+    .header-phone {
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      border-radius: 999px;
+      padding: 0.45rem 0.8rem;
+      transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+    }
+    .menu-btn:hover { background: var(--ink); color: var(--foam); border-color: var(--ink); }
+
+    .widget-frame {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+      min-height: 640px;
+    }
+    .widget-frame iframe {
+      width: 100%;
+      height: 720px;
+      border: 0;
+      display: block;
+    }
+    .offers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    #order { scroll-margin-top: 84px; }
+    a.offer {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1rem 1rem 1.1rem;
+      transition: background-color 0.22s ease, border-color 0.22s ease;
+    }
+    a.offer:hover { border-color: var(--ink); }
+    .offer h3 { margin: 0.35rem 0 0.3rem; font-size: 1.02rem; }
+    .offer p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+    .offer strong {
+      display: block;
+      margin-top: 0.7rem;
+      font-family: var(--mono);
+      font-weight: 500;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: end;
+      padding: 2.5rem 0 3.5rem;
+    }
+    .eyebrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.75rem;
+      align-items: center;
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 1rem;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--reed); display: inline-block; }
+    h1 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+    }
+    .lead { font-size: 1.12rem; max-width: 38rem; color: var(--ink-soft); margin: 0 0 1.6rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-bottom: 2rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.85rem 1.2rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: transparent;
+      transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+    }
+    .btn-primary { background: var(--copper); color: var(--white); }
+    .btn-primary:hover { background: #7d3416; }
+    .btn-ghost { border-color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--foam); }
+    .btn-light { background: var(--white); color: var(--ink); }
+    .btn-light:hover { background: var(--sand); }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .stats li {
+      border-top: 1px solid var(--line);
+      padding-top: 0.7rem;
+    }
+    .stats strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 1.35rem;
+      font-weight: 500;
+    }
+    .stats span { color: var(--ink-soft); font-size: 0.86rem; }
+
+    .portrait-card {
+      position: relative;
+      background: var(--river);
+      color: var(--foam);
+      border-radius: 1.4rem 1.4rem 0.4rem 1.4rem;
+      overflow: hidden;
+      min-height: 460px;
+    }
+    .portrait-card img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    .portrait-card figcaption {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      background: rgba(12, 28, 25, 0.78);
+      backdrop-filter: blur(8px);
+      padding: 0.9rem 1rem;
+      border-radius: 0.8rem;
+    }
+    .portrait-card strong { display: block; font-family: var(--display); font-weight: 500; }
+    .portrait-card span { color: #d7e4dc; font-size: 0.92rem; }
+    .plot-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.45;
+    }
+
+    section { padding: 4.5rem 0; }
+    .section-kicker {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin: 0 0 0.6rem;
+    }
+    h2 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.8rem;
+    }
+    .section-intro { max-width: 40rem; color: var(--ink-soft); margin: 0 0 2rem; }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+    }
+    .service {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1.2rem 1.2rem 1.3rem;
+      min-height: 180px;
+    }
+    .service em {
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 0.78rem;
+      color: var(--reed);
+    }
+    .service h3 { margin: 0.7rem 0 0.4rem; font-size: 1.15rem; }
+    .service p { margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.2rem;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      background: transparent;
+      border-radius: 999px;
+      padding: 0.45rem 0.85rem;
+      cursor: pointer;
+      transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+    }
+    .chip:hover { border-color: var(--ink); }
+    .chip[aria-pressed="true"] { background: var(--ink); color: var(--foam); border-color: var(--ink); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .card {
+      background: var(--paper);
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+    }
+    .card a { text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%; }
+    .card img { width: 100%; height: 210px; object-fit: cover; }
+    .card-plain {
+      height: 210px;
+      background:
+        linear-gradient(160deg, rgba(44, 107, 82, 0.16), transparent 40%),
+        repeating-linear-gradient(90deg, transparent, transparent 27px, rgba(20, 36, 31, 0.08) 28px),
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(20, 36, 31, 0.08) 28px),
+        var(--sand);
+      display: grid;
+      place-items: end start;
+      padding: 1rem;
+    }
+    .card-plain span { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .card-body { padding: 1rem 1rem 1.15rem; display: flex; flex-direction: column; gap: 0.35rem; flex: 1; }
+    .kind { margin: 0; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--reed); }
+    .card h3 { margin: 0; font-size: 1.12rem; line-height: 1.3; }
+    .meta, .excerpt { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+    .price {
+      margin-top: auto;
+      padding-top: 0.6rem;
+      font-family: var(--mono);
+      font-size: 1.05rem;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.15rem 0.45rem;
+    }
+    .more-link { margin: 1.3rem 0 0; }
+    .more-link a { color: var(--copper); }
+
+    .river {
+      background: var(--river);
+      color: var(--foam);
+    }
+    .river .section-kicker { color: var(--gold); }
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .river p { color: #d5e3db; }
+    .cadastre {
+      background: var(--deep);
+      border-radius: 1.1rem;
+      padding: 1.3rem;
+      border: 1px solid rgba(198, 161, 90, 0.35);
+    }
+    .cadastre code {
+      display: block;
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--gold);
+      margin: 0.4rem 0 0.8rem;
+    }
+    .cadastre p { margin: 0 0 1rem; font-size: 0.95rem; }
+    .map-svg { width: 100%; height: auto; margin-bottom: 0.8rem; }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 2rem;
+    }
+    .facts { list-style: none; margin: 1.2rem 0 0; padding: 0; }
+    .facts li {
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      gap: 1rem;
+      padding: 0.7rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .facts span { color: var(--ink-soft); }
+    .logo-panel {
+      background: #111;
+      border-radius: 1rem;
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+      padding: 2.4rem 1.8rem;
+      box-shadow: inset 0 0 0 1px rgba(231, 192, 122, 0.4);
+    }
+    .logo-panel img { width: min(240px, 100%); height: auto; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 1.5rem;
+    }
+    .contact-card, form {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1.3rem;
+    }
+    .contact-card a { color: var(--copper); }
+    .contact-card a.btn-primary { color: var(--white); }
+    .channels { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1rem; }
+    label { display: block; font-size: 0.86rem; margin-bottom: 0.3rem; }
+    .field { margin-bottom: 0.8rem; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 0.7rem;
+      padding: 0.75rem 0.8rem;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    .radios { display: flex; gap: 1rem; }
+    .radios label { display: flex; gap: 0.4rem; align-items: center; margin: 0; }
+    #form-status {
+      margin: 0.8rem 0 0;
+      color: var(--reed);
+    }
+    .fine { color: var(--ink-soft); font-size: 0.86rem; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.4rem 0 5.5rem;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+    .footer-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    footer a { color: var(--ink); }
+
+    .dock {
+      display: none;
+      position: fixed;
+      left: 0.75rem;
+      right: 0.75rem;
+      bottom: 0.75rem;
+      z-index: 12;
+      gap: 0.5rem;
+    }
+    .dock a { flex: 1; }
+
+    :focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+
+    @media (max-width: 900px) {
+      .hero, .split, .about, .contact-grid { grid-template-columns: 1fr; }
+      .services, .grid, .stats, .offers { grid-template-columns: 1fr 1fr; }
+      body { padding-bottom: 5.2rem; }
+      .nav { display: none; }
+      .nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--foam);
+        border-bottom: 1px solid var(--line);
+        padding: 0.5rem 1rem 1rem;
+      }
+      .menu-btn { display: inline-flex; }
+      .header-phone { display: none; }
+      .dock { display: flex; }
+      .portrait-card img { height: 420px; }
+    }
+    @media (max-width: 640px) {
+      .services, .grid, .offers { grid-template-columns: 1fr; }
+      .widget-frame, .widget-frame iframe { height: 640px; min-height: 640px; }
+      .facts li { grid-template-columns: 1fr; gap: 0.15rem; }
+      section { padding: 3.2rem 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn, .chip, .menu-btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">До змісту</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">
+        <span class="mark" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+            <path d="M6 6.5h20v13H6z" stroke="#F4EFE4" stroke-width="1.5"/>
+            <path d="M16 6.5v13M16 13h10" stroke="#F4EFE4" stroke-width="1.5"/>
+            <path d="M5.5 24.2c4.4-2.8 7.6 1.8 12-.2 3.2-1.4 6.2 0 9 1.6" stroke="#E7C07A" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-name">Осокорки</span>
+          <span class="brand-sub">Дмитро Нішкун</span>
+        </span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#order">Перевірка</a>
+        <a href="#objects">Об’єкти</a>
+        <a href="#contact">Контакти</a>
+      </nav>
+      <a class="header-phone" href="tel:+380665968444">+38 (066) 596-84-44</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Меню</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap hero" id="top">
+      <div>
+        <p class="eyebrow"><span class="dot"></span> З TikTok та Instagram · Осокорки</p>
+        <h1>Перевірте ділянку до перегляду</h1>
+        <p class="lead">Дмитро Нішкун. Офіційна довідка з кадастру, реєстру прав, план меж або пошук власника. Оплата карткою, вхід через Дію, BankID або КЕП.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#order">Перевірити ділянку</a>
+          <a class="btn btn-ghost" href="tel:+380665968444">Зателефонувати</a>
+          <a class="btn btn-ghost" href="#objects">Дивитись об’єкти</a>
+        </div>
+        <ul class="stats">
+          <li><strong>16</strong><span>років досвіду</span></li>
+          <li><strong>64</strong><span>об’єкти в портфоліо</span></li>
+          <li><strong>9</strong><span>актуальних оголошень</span></li>
+          <li><strong>10</strong><span>років на RIELTOR.UA</span></li>
+        </ul>
+      </div>
+      <figure class="portrait-card">
+        <svg class="plot-lines" viewBox="0 0 400 520" aria-hidden="true">
+          <path d="M20 430 C 90 390, 140 450, 210 400 S 330 340, 390 360" fill="none" stroke="#e7c07a" stroke-width="2"/>
+          <path d="M40 80 H180 V200 H40 Z M200 120 H340 V250 H200 Z" fill="none" stroke="#f3efe4" stroke-dasharray="4 6"/>
+        </svg>
+        <img src="assets/portrait.jpg" alt="Дмитро Нішкун, рієлтор на Осокорках" width="960" height="960">
+        <figcaption>
+          <strong>Дмитро Нішкун</strong>
+          <span>Спеціаліст із продажу будинків · Осокорки</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <section id="order">
+      <div class="wrap">
+        <p class="section-kicker">Перевірка ділянки</p>
+        <h2>Замовте довідку прямо тут</h2>
+        <p class="section-intro">Оберіть довідку. Замовлення відкривається на кадастровій карті: оплата карткою, вхід через Дію, BankID або КЕП.</p>
+        <div class="widget-frame" id="widget-wrap" hidden>
+          <iframe id="kadastr-widget" title="Замовлення довідок із земельного кадастру"></iframe>
+        </div>
+        <div class="offers">
+          <a class="offer" href="https://kadastr.com.ua/">
+            <h3>Довідка ДЗК</h3>
+            <p>Дані про ділянку з Державного земельного кадастру.</p>
+            <strong>149 грн</strong>
+          </a>
+          <a class="offer" href="https://kadastr.com.ua/">
+            <h3>Довідка ДРРП</h3>
+            <p>Реєстр речових прав на нерухоме майно.</p>
+            <strong>299 грн</strong>
+          </a>
+          <a class="offer" href="https://kadastr.com.ua/">
+            <h3>Повний звіт</h3>
+            <p>ДЗК, ДРРП і аналітика в одному документі.</p>
+            <strong>399 грн</strong>
+          </a>
+          <a class="offer" href="https://kadastr.com.ua/">
+            <h3>Довідка НГО</h3>
+            <p>Нормативна грошова оцінка ділянки.</p>
+            <strong>149 грн</strong>
+          </a>
+          <a class="offer" href="https://kadastr.com.ua/">
+            <h3>Кадастровий план</h3>
+            <p>План ділянки з координатами меж.</p>
+            <strong>99 грн</strong>
+          </a>
+          <a class="offer" href="https://kadastr.com.ua/">
+            <h3>Карта 2026</h3>
+            <p>Оновлені межі. Доступ на 10 хвилин після оплати.</p>
+            <strong>99 грн</strong>
+          </a>
+          <a class="offer" href="https://kadastr.com.ua/">
+            <h3>Пошук власника</h3>
+            <p>Телефон власника земельної ділянки.</p>
+            <strong>2 499 грн</strong>
+          </a>
+          <a class="offer" href="https://kadastr.com.ua/">
+            <h3>Пошук за прізвищем</h3>
+            <p>Ділянки, записані на прізвище власника.</p>
+            <strong>299 грн</strong>
+          </a>
+        </div>
+        <p class="fine">Ціни з <a href="https://kadastr.today/partnerska-programa">партнерської програми kadastr.today</a>.</p>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <p class="section-kicker">01 — Послуги</p>
+        <h2>Що можна закрити одним дзвінком</h2>
+        <p class="section-intro">Фокус — лівий берег і вода: Осокорки, шлюзи, Вишеньки, Проців. Окремо є квартира на Печерську, земля в Голосієві та комерція на Солом’янці.</p>
+        <div class="services">
+          <article class="service">
+            <em>01</em>
+            <h3>Будинки</h3>
+            <p>Продаж будинків біля Дніпра: від дачі у Вишеньках до будинку на першій лінії в Процеві з елінгом, пірсом і басейном.</p>
+          </article>
+          <article class="service">
+            <em>02</em>
+            <h3>Ділянки</h3>
+            <p>Земля під забудову, зокрема з виходом на Дніпро. В оголошеннях є цільове призначення і кадастровий номер.</p>
+          </article>
+          <article class="service">
+            <em>03</em>
+            <h3>Квартири</h3>
+            <p>Продаж квартир у Києві. Зараз у роботі двокімнатна біля метро Печерська, стан під ремонт, один власник.</p>
+          </article>
+          <article class="service">
+            <em>04</em>
+            <h3>Комерція</h3>
+            <p>Приміщення вільного призначення і фасадні ділянки. На Солом’янці — об’єкт із техумовами на світло, воду й каналізацію.</p>
+          </article>
+          <article class="service">
+            <em>05</em>
+            <h3>Оренда</h3>
+            <p>Будинок на Нижніх садах, 3 км від проспекта Бажана, на березі Дніпра. Є варіант на короткий термін.</p>
+          </article>
+          <article class="service">
+            <em>06</em>
+            <h3>Показ і документи</h3>
+            <p>Відеотур до виїзду, право власності на будинок і ділянку, електрика, газ, вода. Для частини об’єктів вказано продаж без комісії.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="objects">
+      <div class="wrap">
+        <p class="section-kicker">02 — Зараз у продажу й оренді</p>
+        <h2>Дев’ять актуальних об’єктів</h2>
+        <p class="section-intro">Картки зібрані з профілю на RIELTOR.UA. Ціна й статус змінюються, тож перед переглядом краще подзвонити.</p>
+        <div class="toolbar" role="toolbar" aria-label="Фільтр об’єктів">
+          <button class="chip" type="button" aria-pressed="true" data-filter="all">Усі</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="house">Будинки</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="land">Ділянки</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="flat">Квартири</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="commercial">Комерція</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="rent">Оренда</button>
+        </div>
+        <div class="grid" id="catalog">
+          <article class="card" data-kind="house">
+            <a href="https://rieltor.ua/protsev/houses-sale/view/13019165/">
+              <img src="assets/house-protsiv.jpg" alt="Двір будинку в Процеві з басейном і мангальною зоною" width="960" height="720">
+              <div class="card-body">
+                <p class="kind">Будинок · Проців</p>
+                <h3>Перша лінія Дніпра, 24 км від Бажана</h3>
+                <p class="meta">300 м² · 11 соток · 2 поверхи · елінг і пірс 50 м</p>
+                <div class="tags"><span class="tag">Відеотур</span><span class="tag">Можливий обмін</span></div>
+                <p class="excerpt">Басейн 15,5×6,5 м, баня, 35 кВт, ландшафт і парковка на 3 машини.</p>
+                <p class="price">430 000 $</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-kind="house">
+            <a href="https://rieltor.ua/vishenki/houses-sale/view/12839351/">
+              <img src="assets/house-vyshenky.jpg" alt="Будинок на ділянці у Вишеньках" width="960" height="720">
+              <div class="card-body">
+                <p class="kind">Будинок · Вишеньки</p>
+                <h3>Східна, 28. 20–25 хвилин від Славутича</h3>
+                <p class="meta">120 м² · 6 соток · 500 м до Дніпра · 2010</p>
+                <div class="tags"><span class="tag">Без комісії</span></div>
+                <p class="excerpt">Право власності на будинок і ділянку. 10 кВт, вода, каналізація, газ по вулиці.</p>
+                <p class="price">58 000 $</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-kind="land">
+            <a href="https://rieltor.ua/vishenki/areas-sale/view/13086463/">
+              <img src="assets/land-vyshenky.jpg" alt="Берег Дніпра біля ділянки у Вишеньках" width="960" height="720">
+              <div class="card-body">
+                <p class="kind">Ділянка · Вишеньки</p>
+                <h3>Вихід до Дніпра, 18 км від Осокорків</h3>
+                <p class="meta">10 соток у власності + 10 соток в оренді до води</p>
+                <div class="tags"><span class="tag">Відеотур</span></div>
+                <p class="excerpt">Плита під будинок, 6 кВт з можливістю збільшення, газ під ділянку.</p>
+                <p class="price">85 000 $</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-kind="rent">
+            <a href="https://rieltor.ua/houses-rent/view/13085952/">
+              <img src="assets/rent-osokorky.jpg" alt="Будинок в оренду на Нижніх садах, Осокорки" width="960" height="720">
+              <div class="card-body">
+                <p class="kind">Оренда · Осокорки</p>
+                <h3>81-ша Садова, Нижні сади</h3>
+                <p class="meta">250 м² · 4 сотки · 5 кімнат · 3 км від Бажана</p>
+                <div class="tags"><span class="tag">Короткий термін</span></div>
+                <p class="excerpt">Берег Дніпра, три спальні, камін, сховище, гараж, комбіноване опалення.</p>
+                <p class="price">1 200 $ / міс</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-kind="house">
+            <a href="https://rieltor.ua/houses-sale/view/13019141/">
+              <img src="assets/house-pechersk.jpg" alt="Цегляний будинок із садом на Садово-Ботанічній" width="960" height="720">
+              <div class="card-body">
+                <p class="kind">Будинок · Печерськ</p>
+                <h3>Садово-Ботанічна, 10. Видубичі</h3>
+                <p class="meta">53 м² · 4 сотки · 3 кімнати · 1956</p>
+                <p class="excerpt">Будинок з ділянкою біля Видубичів і Верхньої Телички.</p>
+                <p class="price">350 000 $</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-kind="flat">
+            <a href="https://rieltor.ua/flats-sale/view/12981028/">
+              <img src="assets/flat-pechersk.jpg" alt="Кімната квартири на бульварі Лесі Українки" width="960" height="720">
+              <div class="card-body">
+                <p class="kind">Квартира · Печерськ</p>
+                <h3>Лесі Українки, 28. Метро Печерська</h3>
+                <p class="meta">44 м² · 2 кімнати · 8/9 поверх · 1967</p>
+                <div class="tags"><span class="tag">Відеотур</span><span class="tag">Під ремонт</span></div>
+                <p class="excerpt">Один власник в Україні. Новий ліфт, роздільний санвузол, балкон.</p>
+                <p class="price">65 000 $</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-kind="land">
+            <a href="https://rieltor.ua/areas-sale/view/12512215/">
+              <div class="card-plain"><span>Кадастр · 8,43 сот</span></div>
+              <div class="card-body">
+                <p class="kind">Ділянка · Віта-Литовська</p>
+                <h3>Клавдії Радченко, 7. Чапаївка</h3>
+                <p class="meta">Під житловий будинок · виїзд на дві вулиці</p>
+                <div class="tags"><span class="tag">Без комісії</span></div>
+                <p class="excerpt">5–10 хвилин від метро Видубичі. Електрика і газ уздовж ділянки. Номер 8000000000:90:066:0043.</p>
+                <p class="price">32 000 $</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-kind="land">
+            <a href="https://rieltor.ua/areas-sale/view/12971268/">
+              <div class="card-plain"><span>Фасад · 32 м</span></div>
+              <div class="card-body">
+                <p class="kind">Ділянка · Печерськ</p>
+                <h3>Садово-Ботанічна, ботанічний сад</h3>
+                <p class="meta">4,17 сотки · частина будинку · окремий вхід</p>
+                <p class="excerpt">Приватна власність, цільове призначення — обслуговування житлового будинку.</p>
+                <p class="price">350 000 $</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="card" data-kind="commercial">
+            <a href="https://rieltor.ua/commercials-sale/view/12400957/">
+              <div class="card-plain"><span>Фасад · 60+ м</span></div>
+              <div class="card-body">
+                <p class="kind">Комерція · Солом’янка</p>
+                <h3>Академіка Возіанова, 9</h3>
+                <p class="meta">Близько 220–260 м² · ділянка 13 соток</p>
+                <div class="tags"><span class="tag">Без комісії</span></div>
+                <p class="excerpt">700 м від Севастопольської площі. 50 кВт, техумови на воду й каналізацію, продаж корпоративних прав.</p>
+                <p class="price">390 000 $</p>
+              </div>
+            </a>
+          </article>
+        </div>
+        <p class="more-link"><a href="https://0665968444.rieltor.ua/">Усі оголошення і портфоліо на RIELTOR.UA</a></p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about">
+        <div>
+          <p class="section-kicker">04 — Рієлтор</p>
+          <h2>Дмитро Нішкун, Level Group</h2>
+          <p>Працює з Осокорків: будинки, ділянки з виходом на Дніпро, квартири та комерційна нерухомість. На RIELTOR.UA профіль верифікований, статус Platinum partner. Окремий акцент — відеопрезентація об’єкта, щоб покупцю не їхати на порожній перегляд.</p>
+          <ul class="facts">
+            <li><span>Телефон</span><a href="tel:+380665968444">+38 (066) 596-84-44</a></li>
+            <li><span>Офіс</span><span>вул. Центральна, 11А, Осокорки</span></li>
+            <li><span>Години</span><span>пн–пт 10:00–18:00, сб 10:00–14:00</span></li>
+            <li><span>Географія</span><span>Осокорки, Вишеньки, Проців, Печерськ, Голосіїв, Солом’янка</span></li>
+            <li><span>Facebook</span><a href="https://www.facebook.com/rieltorosokorki">facebook.com/rieltorosokorki</a></li>
+          </ul>
+        </div>
+        <div class="logo-panel">
+          <img src="assets/logo.png" alt="Level Group" width="480" height="480">
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <p class="section-kicker">05 — Зв’язок</p>
+        <h2>Напишіть, що шукаєте</h2>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <p>Найшвидше — дзвінок або Viber. Якщо зручніше текстом, форма відкриє чат із уже готовим повідомленням.</p>
+            <div class="channels">
+              <a class="btn btn-primary" href="tel:+380665968444">+38 (066) 596-84-44</a>
+              <a class="btn btn-ghost" href="viber://chat?number=%2B380665968444">Viber</a>
+              <a class="btn btn-ghost" href="https://wa.me/380665968444">WhatsApp</a>
+              <a class="btn btn-ghost" href="https://www.facebook.com/rieltorosokorki">Facebook</a>
+              <a class="btn btn-ghost" href="https://www.youtube.com/channel/UCO-Cc2Wo_X35RmcPsiDdRSw">YouTube · Осокорки</a>
+            </div>
+          </div>
+          <form id="lead">
+            <div class="field">
+              <label for="name">Ім’я</label>
+              <input id="name" name="name" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="phone">Телефон</label>
+              <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+380">
+            </div>
+            <div class="field">
+              <label for="intent">Що потрібно</label>
+              <select id="intent" name="intent">
+                <option>Купити будинок</option>
+                <option>Купити ділянку</option>
+                <option>Продати об’єкт</option>
+                <option>Орендувати будинок</option>
+                <option>Комерційна нерухомість</option>
+                <option>Інше</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="note">Деталі</label>
+              <textarea id="note" name="note" placeholder="Район, бюджет, площа або кадастровий номер"></textarea>
+            </div>
+            <div class="field radios">
+              <label><input type="radio" name="channel" value="viber" checked> Viber</label>
+              <label><input type="radio" name="channel" value="whatsapp"> WhatsApp</label>
+            </div>
+            <button class="btn btn-primary" type="submit">Надіслати запит</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>Дмитро Нішкун · Level Group · Осокорки</span>
+      <span>Об’єкти: <a href="https://0665968444.rieltor.ua/">RIELTOR.UA</a> · Перевірка: <a href="https://kadastr.today/partnerska-programa">kadastr.today</a></span>
+    </div>
+  </footer>
+
+  <div class="dock">
+    <a class="btn btn-primary" href="#order">Перевірити</a>
+    <a class="btn btn-light" href="tel:+380665968444">Дзвінок</a>
+  </div>
+
+  <script>
+    const PARTNER_CODE = "";
+    const partnerFromLink = new URLSearchParams(location.search).get("ref");
+    if (partnerFromLink) sessionStorage.setItem("kadastr_ref", partnerFromLink);
+    const partnerCode = partnerFromLink || sessionStorage.getItem("kadastr_ref") || PARTNER_CODE;
+    const orderUrl = partnerCode
+      ? "https://kadastr.com.ua/?ref=" + encodeURIComponent(partnerCode)
+      : "https://kadastr.com.ua/";
+    document.querySelectorAll(".offer").forEach((link) => {
+      link.href = orderUrl;
+    });
+    if (partnerCode) {
+      document.getElementById("widget-wrap").hidden = false;
+      document.getElementById("kadastr-widget").src =
+        "https://kadastr.com.ua/widget?partner=" + encodeURIComponent(partnerCode);
+    }
+    const header = document.querySelector(".site-header");
+    const nav = document.getElementById("nav");
+    const menuBtn = document.querySelector(".menu-btn");
+
+    menuBtn.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+    });
+    nav.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        nav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+    document.addEventListener("scroll", () => {
+      header.classList.toggle("is-stuck", window.scrollY > 8);
+    }, { passive: true });
+
+    document.querySelectorAll(".chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        document.querySelectorAll(".chip").forEach((item) => item.setAttribute("aria-pressed", "false"));
+        chip.setAttribute("aria-pressed", "true");
+        const filter = chip.dataset.filter;
+        document.querySelectorAll("#catalog .card").forEach((card) => {
+          card.hidden = filter !== "all" && card.dataset.kind !== filter;
+        });
+      });
+    });
+
+    document.getElementById("lead").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const text = [
+        "Запит з сайту, Осокорки",
+        "Ім’я: " + data.get("name"),
+        "Телефон: " + data.get("phone"),
+        "Запит: " + data.get("intent"),
+        data.get("note") ? "Деталі: " + data.get("note") : ""
+      ].filter(Boolean).join("\n");
+      const status = document.getElementById("form-status");
+      status.hidden = false;
+      if (data.get("channel") === "whatsapp") {
+        status.textContent = "Відкриваю WhatsApp із текстом запиту.";
+        window.open("https://wa.me/380665968444?text=" + encodeURIComponent(text), "_blank", "noopener");
+        return;
+      }
+      if (navigator.clipboard) navigator.clipboard.writeText(text).catch(() => {});
+      status.textContent = "Відкриваю Viber. Текст запиту скопійовано — вставте його в чат, якщо поле порожнє.";
+      window.location.href = "viber://chat?number=%2B380665968444";
+    });
+  </script>
+</body>
+</html>
