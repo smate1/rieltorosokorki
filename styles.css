@@ -466,20 +466,33 @@ h2 {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 0.9fr 1.1fr;
   gap: 1.5rem;
+  align-items: start;
 }
 .contact-card, form {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 1rem;
-  padding: 1.3rem;
+  padding: 1.5rem 1.6rem;
 }
 .contact-card a { color: var(--copper); }
 .contact-card a.btn-primary { color: var(--white); }
 .channels { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1rem; }
+#lead {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem 1rem;
+}
+#lead .field:nth-child(3),
+#lead .field:nth-child(4),
+#lead .radios,
+#lead .btn[type="submit"],
+#lead #form-status {
+  grid-column: 1 / -1;
+}
 label { display: block; font-size: 0.86rem; margin-bottom: 0.3rem; }
-.field { margin-bottom: 0.8rem; }
+.field { margin: 0; }
 input:not([type="radio"]):not([type="checkbox"]),
 select,
 textarea {
@@ -492,16 +505,18 @@ textarea {
 }
 textarea { min-height: 110px; resize: vertical; }
 .radios {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 0.55rem;
-  margin: 0 0 1.35rem;
+  margin: 0.35rem 0 0.55rem;
   padding: 0;
   border: 0;
   min-inline-size: 0;
 }
 #lead .btn[type="submit"] {
   width: 100%;
+  margin-top: 0.55rem;
+  padding-block: 0.95rem;
 }
 .radios legend {
   padding: 0;
@@ -513,9 +528,10 @@ textarea { min-height: 110px; resize: vertical; }
 .radios label {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.55rem;
   margin: 0;
-  padding: 0.55rem 0.85rem;
+  padding: 0.7rem 0.85rem;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--white);
@@ -586,6 +602,8 @@ footer a { color: var(--ink); }
 @media (max-width: 900px) {
   .hero, .split, .about, .contact-grid { grid-template-columns: 1fr; }
   .services, .grid, .stats, .offers { grid-template-columns: 1fr 1fr; }
+  #lead { grid-template-columns: 1fr; }
+  .contact-card, form { padding: 1.25rem; }
   body { padding-bottom: 5.2rem; }
   .nav {
     display: flex;
