@@ -505,13 +505,16 @@ textarea {
 }
 textarea { min-height: 110px; resize: vertical; }
 .radios {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.55rem;
+  display: block;
   margin: 0.35rem 0 0.55rem;
   padding: 0;
   border: 0;
   min-inline-size: 0;
+}
+.radios-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
 }
 #lead .btn[type="submit"] {
   width: 100%;
@@ -519,17 +522,19 @@ textarea { min-height: 110px; resize: vertical; }
   padding-block: 0.95rem;
 }
 .radios legend {
+  display: block;
+  float: none;
   padding: 0;
   margin: 0 0 0.45rem;
   font-size: 0.86rem;
-  float: left;
-  width: 100%;
+  width: auto;
 }
 .radios label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
+  width: 100%;
   margin: 0;
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--line);
@@ -538,6 +543,7 @@ textarea { min-height: 110px; resize: vertical; }
   font-size: 0.95rem;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
 }
 .radios input[type="radio"] {
   appearance: none;
