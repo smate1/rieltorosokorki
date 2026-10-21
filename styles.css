@@ -480,16 +480,81 @@ h2 {
 .channels { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1rem; }
 label { display: block; font-size: 0.86rem; margin-bottom: 0.3rem; }
 .field { margin-bottom: 0.8rem; }
-input, select, textarea {
+input:not([type="radio"]):not([type="checkbox"]),
+select,
+textarea {
   width: 100%;
   border: 1px solid var(--line);
   background: var(--white);
   border-radius: 0.7rem;
   padding: 0.75rem 0.8rem;
+  font-size: 1rem;
 }
 textarea { min-height: 110px; resize: vertical; }
-.radios { display: flex; gap: 1rem; }
-.radios label { display: flex; gap: 0.4rem; align-items: center; margin: 0; }
+.radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0 0 1.35rem;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+#lead .btn[type="submit"] {
+  width: 100%;
+}
+.radios legend {
+  padding: 0;
+  margin: 0 0 0.45rem;
+  font-size: 0.86rem;
+  float: left;
+  width: 100%;
+}
+.radios label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: 0.95rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.radios input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  flex: none;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  background: var(--white);
+  display: grid;
+  place-content: center;
+}
+.radios input[type="radio"]::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--copper);
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+.radios input[type="radio"]:checked {
+  border-color: var(--copper);
+}
+.radios input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+.radios label:has(input:checked) {
+  border-color: var(--copper);
+  background: rgba(154, 67, 28, 0.06);
+}
 #form-status {
   margin: 0.8rem 0 0;
   color: var(--reed);
@@ -498,7 +563,7 @@ textarea { min-height: 110px; resize: vertical; }
 
 footer {
   border-top: 1px solid var(--line);
-  padding: 1.4rem 0 5.5rem;
+  padding: 1.4rem 0 1.4rem;
   color: var(--ink-soft);
   font-size: 0.9rem;
 }
