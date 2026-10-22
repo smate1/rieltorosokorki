@@ -1,12 +1,39 @@
+const ORDER_ORIGIN = "https://kadastr.com.ua";
 const PARTNER_CODE = "";
 const partnerFromLink = new URLSearchParams(location.search).get("ref");
 if (partnerFromLink) sessionStorage.setItem("kadastr_ref", partnerFromLink);
 const partnerCode = partnerFromLink || sessionStorage.getItem("kadastr_ref") || PARTNER_CODE;
-const orderUrl = partnerCode
-  ? "https://kadastr.com.ua/?ref=" + encodeURIComponent(partnerCode)
-  : "https://kadastr.com.ua/";
-document.querySelectorAll(".offer").forEach((link) => {
-  link.href = orderUrl;
+const cadInput = document.getElementById("cad");
+const mapFrame = document.getElementById("kadastr-map");
+const cadStatus = document.getElementById("cad-status");
+let activeCad = "";
+
+function orderUrl(path, cadParam) {
+  const url = new URL(path || "/", ORDER_ORIGIN);
+  if (partnerCode) url.searchParams.set("ref", partnerCode);
+  if (cadParam && activeCad) url.searchParams.set(cadParam, activeCad);
+  return url.toString();
+}
+
+function applyReferralLinks() {
+  document.querySelectorAll(".js-order, .offer").forEach((link) => {
+    link.href = orderUrl(link.dataset.path || "/", link.dataset.cad || "");
+  });
+  mapFrame.src = orderUrl("/", "cad");
+}
+
+applyReferralLinks();
+
+document.getElementById("cad-search").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const cad = cadInput.value.trim().replace(/\s+/g, "");
+  if (!/^\d{10}:\d{2}:\d{3}:\d{4}$/.test(cad)) {
+    cadStatus.textContent = "Перевірте номер: потрібно 10 цифр, двоє, троє і четверо через двокрапку.";
+    return;
+  }
+  activeCad = cad;
+  cadStatus.textContent = "Карта відкриває цю ділянку. Довідка з неї теж піде через цей сайт.";
+  applyReferralLinks();
 });
 if (partnerCode) {
   document.getElementById("widget-wrap").hidden = false;
@@ -41,17 +68,6 @@ window.addEventListener("resize", () => {
 document.addEventListener("scroll", () => {
   header.classList.toggle("is-stuck", window.scrollY > 8);
 }, { passive: true });
-
-document.querySelectorAll(".chip").forEach((chip) => {
-  chip.addEventListener("click", () => {
-    document.querySelectorAll(".chip").forEach((item) => item.setAttribute("aria-pressed", "false"));
-    chip.setAttribute("aria-pressed", "true");
-    const filter = chip.dataset.filter;
-    document.querySelectorAll("#catalog .card").forEach((card) => {
-      card.hidden = filter !== "all" && card.dataset.kind !== filter;
-    });
-  });
-});
 
 document.getElementById("lead").addEventListener("submit", (event) => {
   event.preventDefault();

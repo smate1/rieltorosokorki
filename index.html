@@ -48,8 +48,8 @@
         </span>
       </a>
       <nav class="nav" id="nav">
+        <a href="#map">Карта</a>
         <a href="#order">Перевірка</a>
-        <a href="#objects">Об’єкти</a>
         <a href="#contact">Контакти</a>
       </nav>
       <a class="header-phone" href="tel:+380665968444">+38 (066) 596-84-44</a>
@@ -68,13 +68,11 @@
         <p class="lead">Дмитро Нішкун. Офіційна довідка з кадастру, реєстру прав, план меж або пошук власника. Оплата карткою, вхід через Дію, BankID або КЕП.</p>
         <div class="actions">
           <a class="btn btn-ghost" href="tel:+380665968444">Зателефонувати</a>
-          <a class="btn btn-ghost" href="#objects">Дивитись об’єкти</a>
-          <a class="btn btn-primary" href="#order">Перевірити ділянку</a>
+          <a class="btn btn-primary" href="#map">Перевірити ділянку</a>
         </div>
         <ul class="stats">
           <li><strong>16</strong><span>років досвіду</span></li>
           <li><strong>64</strong><span>об’єкти в портфоліо</span></li>
-          <li><strong>9</strong><span>актуальних оголошень</span></li>
           <li><strong>10</strong><span>років на RIELTOR.UA</span></li>
         </ul>
       </div>
@@ -91,51 +89,71 @@
       </figure>
     </div>
 
+    <section id="map">
+      <div class="wrap">
+        <p class="section-kicker">Кадастрова карта</p>
+        <h2>Знайдіть ділянку на карті</h2>
+        <p class="section-intro">Публічна карта <a class="js-order" data-path="/" data-cad="cad" href="https://kadastr.com.ua/">kadastr.today</a>. Введіть кадастровий номер — карта наблизиться до меж ділянки. Замовлення довідки з карти теж іде через цей сайт.</p>
+        <form class="cad-search" id="cad-search">
+          <label for="cad">Кадастровий номер</label>
+          <div class="cad-row">
+            <input id="cad" name="cad" inputmode="text" autocomplete="off" spellcheck="false" placeholder="8000000000:00:000:0000" aria-describedby="cad-status">
+            <button class="btn btn-primary" type="submit">Показати на карті</button>
+          </div>
+          <p class="fine" id="cad-status">Формат номера: 10 цифр, двоє, троє і четверо через двокрапку.</p>
+        </form>
+        <div class="map-frame">
+          <iframe id="kadastr-map" title="Публічна кадастрова карта України" referrerpolicy="strict-origin-when-cross-origin" allow="payment; geolocation; clipboard-write" allowfullscreen></iframe>
+        </div>
+        <p class="fine map-credit">Якщо на телефоні карту незручно рухати, відкрийте її <a class="js-order" id="map-out" data-path="/" data-cad="cad" href="https://kadastr.com.ua/" target="_blank" rel="noopener">на весь екран</a>.</p>
+      </div>
+    </section>
+
     <section id="order">
       <div class="wrap">
         <p class="section-kicker">Перевірка ділянки</p>
         <h2>Замовте довідку прямо тут</h2>
-        <p class="section-intro">Оберіть довідку. Замовлення відкривається на кадастровій карті: оплата карткою, вхід через Дію, BankID або КЕП.</p>
+        <p class="section-intro">Оберіть довідку. Замовлення відкривається на кадастровій карті вже з кодом цього сайту: оплата карткою, вхід через Дію, BankID або КЕП.</p>
         <div class="widget-frame" id="widget-wrap" hidden>
           <iframe id="kadastr-widget" title="Замовлення довідок із земельного кадастру"></iframe>
         </div>
         <div class="offers">
-          <a class="offer" href="https://kadastr.com.ua/">
+          <a class="offer" data-path="/dzk" href="https://kadastr.com.ua/dzk">
             <h3>Довідка ДЗК</h3>
             <p>Дані про ділянку з Державного земельного кадастру.</p>
             <strong>149 грн</strong>
           </a>
-          <a class="offer" href="https://kadastr.com.ua/">
+          <a class="offer" data-path="/drrp" href="https://kadastr.com.ua/drrp">
             <h3>Довідка ДРРП</h3>
             <p>Реєстр речових прав на нерухоме майно.</p>
             <strong>299 грн</strong>
           </a>
-          <a class="offer" href="https://kadastr.com.ua/">
+          <a class="offer" data-path="/" data-cad="cad" href="https://kadastr.com.ua/">
             <h3>Повний звіт</h3>
             <p>ДЗК, ДРРП і аналітика в одному документі.</p>
             <strong>399 грн</strong>
           </a>
-          <a class="offer" href="https://kadastr.com.ua/">
+          <a class="offer" data-path="/ngo" href="https://kadastr.com.ua/ngo">
             <h3>Довідка НГО</h3>
             <p>Нормативна грошова оцінка ділянки.</p>
             <strong>149 грн</strong>
           </a>
-          <a class="offer" href="https://kadastr.com.ua/">
+          <a class="offer" data-path="/cadastral-plan" href="https://kadastr.com.ua/cadastral-plan">
             <h3>Кадастровий план</h3>
             <p>План ділянки з координатами меж.</p>
             <strong>99 грн</strong>
           </a>
-          <a class="offer" href="https://kadastr.com.ua/">
+          <a class="offer" data-path="/map2026" href="https://kadastr.com.ua/map2026">
             <h3>Карта 2026</h3>
             <p>Оновлені межі. Доступ на 10 хвилин після оплати.</p>
             <strong>99 грн</strong>
           </a>
-          <a class="offer" href="https://kadastr.com.ua/">
+          <a class="offer" data-path="/service/phone-owner-search" data-cad="cadnum" href="https://kadastr.com.ua/service/phone-owner-search">
             <h3>Пошук власника</h3>
             <p>Телефон власника земельної ділянки.</p>
             <strong>2 499 грн</strong>
           </a>
-          <a class="offer" href="https://kadastr.com.ua/">
+          <a class="offer" data-path="/owner-search" href="https://kadastr.com.ua/owner-search">
             <h3>Пошук за прізвищем</h3>
             <p>Ділянки, записані на прізвище власника.</p>
             <strong>299 грн</strong>
@@ -149,188 +167,96 @@
       <div class="wrap">
         <p class="section-kicker">01 — Послуги</p>
         <h2>Що можна закрити одним дзвінком</h2>
-        <p class="section-intro">Фокус — лівий берег і вода: Осокорки, шлюзи, Вишеньки, Проців. Окремо є квартира на Печерську, земля в Голосієві та комерція на Солом’янці.</p>
+        <p class="section-intro">Фокус — лівий берег і вода: Осокорки, шлюзи, Вишеньки, Проців. Також квартири, земля і комерція в Києві.</p>
         <div class="services">
           <article class="service">
-            <em>01</em>
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 11.2 12 5l8 6.2V19a1 1 0 0 1-1 1h-5.2v-5.2H10.2V20H5a1 1 0 0 1-1-1v-7.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <em>01</em>
+            </div>
             <h3>Будинки</h3>
-            <p>Продаж будинків біля Дніпра: від дачі у Вишеньках до будинку на першій лінії в Процеві з елінгом, пірсом і басейном.</p>
+            <p>Продаж будинків біля Дніпра: дачі, будинки на першій лінії і з виходом до води.</p>
           </article>
           <article class="service">
-            <em>02</em>
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4.5 6.5h9.5v7.5H4.5z" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M14 10.5h5.5V18H9v-4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <em>02</em>
+            </div>
             <h3>Ділянки</h3>
-            <p>Земля під забудову, зокрема з виходом на Дніпро. В оголошеннях є цільове призначення і кадастровий номер.</p>
+            <p>Земля під забудову, зокрема з виходом на Дніпро. Перед показом звіряємо цільове призначення і кадастровий номер.</p>
           </article>
           <article class="service">
-            <em>03</em>
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 20V5.5h8V20" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M14 9.5h4.5V20" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M8.4 8.4h3.2M8.4 11.6h3.2M8.4 14.8h3.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <em>03</em>
+            </div>
             <h3>Квартири</h3>
-            <p>Продаж квартир у Києві. Зараз у роботі двокімнатна біля метро Печерська, стан під ремонт, один власник.</p>
+            <p>Продаж квартир у Києві. Перед показом звіряємо власника і стан об’єкта.</p>
           </article>
           <article class="service">
-            <em>04</em>
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 10.5h16V19H4z" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M4 10.5 6.6 5.5h10.8L20 10.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M10 19v-4.5h4V19" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <em>04</em>
+            </div>
             <h3>Комерція</h3>
-            <p>Приміщення вільного призначення і фасадні ділянки. На Солом’янці — об’єкт із техумовами на світло, воду й каналізацію.</p>
+            <p>Приміщення вільного призначення і фасадні ділянки. Перед угодою дивимось техумови на світло, воду й каналізацію.</p>
           </article>
           <article class="service">
-            <em>05</em>
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <circle cx="8.2" cy="12" r="3.1" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M11.1 12H20M16.4 12v2.1M18.6 12v2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <em>05</em>
+            </div>
             <h3>Оренда</h3>
-            <p>Будинок на Нижніх садах, 3 км від проспекта Бажана, на березі Дніпра. Є варіант на короткий термін.</p>
+            <p>Будинки біля Дніпра на короткий і довший термін.</p>
           </article>
           <article class="service">
-            <em>06</em>
+            <div class="service-top">
+              <span class="service-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 4.5h7.2L18.5 9v10.5H7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M14.2 4.5V9h4.3" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M9.6 13.2h5M9.6 16.2h3.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <em>06</em>
+            </div>
             <h3>Показ і документи</h3>
-            <p>Відеотур до виїзду, право власності на будинок і ділянку, електрика, газ, вода. Для частини об’єктів вказано продаж без комісії.</p>
+            <p>Відеотур до виїзду, право власності на будинок і ділянку, електрика, газ, вода.</p>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section id="objects">
-      <div class="wrap">
-        <p class="section-kicker">02 — Зараз у продажу й оренді</p>
-        <h2>Дев’ять актуальних об’єктів</h2>
-        <p class="section-intro">Картки зібрані з профілю на RIELTOR.UA. Ціна й статус змінюються, тож перед переглядом краще подзвонити.</p>
-        <div class="toolbar" role="toolbar" aria-label="Фільтр об’єктів">
-          <button class="chip" type="button" aria-pressed="true" data-filter="all">Усі</button>
-          <button class="chip" type="button" aria-pressed="false" data-filter="house">Будинки</button>
-          <button class="chip" type="button" aria-pressed="false" data-filter="land">Ділянки</button>
-          <button class="chip" type="button" aria-pressed="false" data-filter="flat">Квартири</button>
-          <button class="chip" type="button" aria-pressed="false" data-filter="commercial">Комерція</button>
-          <button class="chip" type="button" aria-pressed="false" data-filter="rent">Оренда</button>
-        </div>
-        <div class="grid" id="catalog">
-          <article class="card" data-kind="house">
-            <a href="https://rieltor.ua/protsev/houses-sale/view/13019165/">
-              <img src="assets/house-protsiv.jpg" alt="Двір будинку в Процеві з басейном і мангальною зоною" width="960" height="720">
-              <div class="card-body">
-                <p class="kind">Будинок · Проців</p>
-                <h3>Перша лінія Дніпра, 24 км від Бажана</h3>
-                <p class="meta">300 м² · 11 соток · 2 поверхи · елінг і пірс 50 м</p>
-                <div class="tags"><span class="tag">Відеотур</span><span class="tag">Можливий обмін</span></div>
-                <p class="excerpt">Басейн 15,5×6,5 м, баня, 35 кВт, ландшафт і парковка на 3 машини.</p>
-                <p class="price">430 000 $</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card" data-kind="house">
-            <a href="https://rieltor.ua/vishenki/houses-sale/view/12839351/">
-              <img src="assets/house-vyshenky.jpg" alt="Будинок на ділянці у Вишеньках" width="960" height="720">
-              <div class="card-body">
-                <p class="kind">Будинок · Вишеньки</p>
-                <h3>Східна, 28. 20–25 хвилин від Славутича</h3>
-                <p class="meta">120 м² · 6 соток · 500 м до Дніпра · 2010</p>
-                <div class="tags"><span class="tag">Без комісії</span></div>
-                <p class="excerpt">Право власності на будинок і ділянку. 10 кВт, вода, каналізація, газ по вулиці.</p>
-                <p class="price">58 000 $</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card" data-kind="land">
-            <a href="https://rieltor.ua/vishenki/areas-sale/view/13086463/">
-              <img src="assets/land-vyshenky.jpg" alt="Берег Дніпра біля ділянки у Вишеньках" width="960" height="720">
-              <div class="card-body">
-                <p class="kind">Ділянка · Вишеньки</p>
-                <h3>Вихід до Дніпра, 18 км від Осокорків</h3>
-                <p class="meta">10 соток у власності + 10 соток в оренді до води</p>
-                <div class="tags"><span class="tag">Відеотур</span></div>
-                <p class="excerpt">Плита під будинок, 6 кВт з можливістю збільшення, газ під ділянку.</p>
-                <p class="price">85 000 $</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card" data-kind="rent">
-            <a href="https://rieltor.ua/houses-rent/view/13085952/">
-              <img src="assets/rent-osokorky.jpg" alt="Будинок в оренду на Нижніх садах, Осокорки" width="960" height="720">
-              <div class="card-body">
-                <p class="kind">Оренда · Осокорки</p>
-                <h3>81-ша Садова, Нижні сади</h3>
-                <p class="meta">250 м² · 4 сотки · 5 кімнат · 3 км від Бажана</p>
-                <div class="tags"><span class="tag">Короткий термін</span></div>
-                <p class="excerpt">Берег Дніпра, три спальні, камін, сховище, гараж, комбіноване опалення.</p>
-                <p class="price">1 200 $ / міс</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card" data-kind="house">
-            <a href="https://rieltor.ua/houses-sale/view/13019141/">
-              <img src="assets/house-pechersk.jpg" alt="Цегляний будинок із садом на Садово-Ботанічній" width="960" height="720">
-              <div class="card-body">
-                <p class="kind">Будинок · Печерськ</p>
-                <h3>Садово-Ботанічна, 10. Видубичі</h3>
-                <p class="meta">53 м² · 4 сотки · 3 кімнати · 1956</p>
-                <p class="excerpt">Будинок з ділянкою біля Видубичів і Верхньої Телички.</p>
-                <p class="price">350 000 $</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card" data-kind="flat">
-            <a href="https://rieltor.ua/flats-sale/view/12981028/">
-              <img src="assets/flat-pechersk.jpg" alt="Кімната квартири на бульварі Лесі Українки" width="960" height="720">
-              <div class="card-body">
-                <p class="kind">Квартира · Печерськ</p>
-                <h3>Лесі Українки, 28. Метро Печерська</h3>
-                <p class="meta">44 м² · 2 кімнати · 8/9 поверх · 1967</p>
-                <div class="tags"><span class="tag">Відеотур</span><span class="tag">Під ремонт</span></div>
-                <p class="excerpt">Один власник в Україні. Новий ліфт, роздільний санвузол, балкон.</p>
-                <p class="price">65 000 $</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card" data-kind="land">
-            <a href="https://rieltor.ua/areas-sale/view/12512215/">
-              <div class="card-plain"><span>Кадастр · 8,43 сот</span></div>
-              <div class="card-body">
-                <p class="kind">Ділянка · Віта-Литовська</p>
-                <h3>Клавдії Радченко, 7. Чапаївка</h3>
-                <p class="meta">Під житловий будинок · виїзд на дві вулиці</p>
-                <div class="tags"><span class="tag">Без комісії</span></div>
-                <p class="excerpt">5–10 хвилин від метро Видубичі. Електрика і газ уздовж ділянки. Номер 8000000000:90:066:0043.</p>
-                <p class="price">32 000 $</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card" data-kind="land">
-            <a href="https://rieltor.ua/areas-sale/view/12971268/">
-              <div class="card-plain"><span>Фасад · 32 м</span></div>
-              <div class="card-body">
-                <p class="kind">Ділянка · Печерськ</p>
-                <h3>Садово-Ботанічна, ботанічний сад</h3>
-                <p class="meta">4,17 сотки · частина будинку · окремий вхід</p>
-                <p class="excerpt">Приватна власність, цільове призначення — обслуговування житлового будинку.</p>
-                <p class="price">350 000 $</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card" data-kind="commercial">
-            <a href="https://rieltor.ua/commercials-sale/view/12400957/">
-              <div class="card-plain"><span>Фасад · 60+ м</span></div>
-              <div class="card-body">
-                <p class="kind">Комерція · Солом’янка</p>
-                <h3>Академіка Возіанова, 9</h3>
-                <p class="meta">Близько 220–260 м² · ділянка 13 соток</p>
-                <div class="tags"><span class="tag">Без комісії</span></div>
-                <p class="excerpt">700 м від Севастопольської площі. 50 кВт, техумови на воду й каналізацію, продаж корпоративних прав.</p>
-                <p class="price">390 000 $</p>
-              </div>
-            </a>
-          </article>
-        </div>
-        <p class="more-link"><a href="https://0665968444.rieltor.ua/">Усі оголошення і портфоліо на RIELTOR.UA</a></p>
       </div>
     </section>
 
     <section id="about">
       <div class="wrap about">
         <div>
-          <p class="section-kicker">04 — Рієлтор</p>
+          <p class="section-kicker">02 — Рієлтор</p>
           <h2>Дмитро Нішкун, Level Group</h2>
           <p>Працює з Осокорків: будинки, ділянки з виходом на Дніпро, квартири та комерційна нерухомість. На RIELTOR.UA профіль верифікований, статус Platinum partner. Окремий акцент — відеопрезентація об’єкта, щоб покупцю не їхати на порожній перегляд.</p>
           <ul class="facts">
@@ -349,7 +275,7 @@
 
     <section id="contact">
       <div class="wrap">
-        <p class="section-kicker">05 — Зв’язок</p>
+        <p class="section-kicker">03 — Зв’язок</p>
         <h2>Напишіть, що шукаєте</h2>
         <div class="contact-grid">
           <div class="contact-card">
@@ -403,12 +329,12 @@
   <footer>
     <div class="wrap footer-inner">
       <span>Дмитро Нішкун · Level Group · Осокорки</span>
-      <span>Об’єкти: <a href="https://0665968444.rieltor.ua/">RIELTOR.UA</a> · Перевірка: <a href="https://kadastr.today/partnerska-programa">kadastr.today</a></span>
+      <span>Перевірка ділянки: <a href="https://kadastr.today/partnerska-programa">kadastr.today</a></span>
     </div>
   </footer>
 
   <div class="dock">
-    <a class="btn btn-primary" href="#order">Перевірити</a>
+    <a class="btn btn-primary" href="#map">Карта</a>
     <a class="btn btn-light" href="tel:+380665968444">Дзвінок</a>
   </div>
 
